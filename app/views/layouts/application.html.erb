@@ -10,6 +10,73 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <span>NaganoCake</span>
+          </a>
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+              <il class="nav-item">
+                <%= link_to "マイページ",customer_path(current_customer.id), class: "nav-link text-light" %>
+              </il>
+              <il class="nav-item">
+                <%= link_to "商品一覧",items_path, class: "nav-link text-light" %>
+              </il>
+              <li class="nav-item">
+                <%= link_to "カート",cart_items_path, class: "nav-link text-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト",destroy_customer_session_path, method: :delete, class: "nav-link text-light" %>
+              </li>
+              <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "商品一覧",admin_items_path, class: "nav-link text-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "会員一覧",admin_customers_path,class: "nav-link text-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "注文履歴一覧",admin_root_path,class: "nav-link text-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ジャンル一覧",admin_genres_path,class: "nav-link text-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト",destroy_admin_session_path, method: :delete, class: "nav-link text-light" %>
+              </li>
+              <% else %>
+              <il class="nav-item">
+                <%= link_to "About",about_path, class: "nav-link text-light" %>
+              </il>
+              <il class="nav-item">
+                <%= link_to "商品一覧",items_path, class: "nav-link text-light" %>
+              </il>
+              <li class="nav-item">
+                <%= link_to "新規登録",new_customer_registration_path, class: "nav-link text-light" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン",new_customer_session_path, class: "nav-link text-light" %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <p class="notice"><%=notice %></p>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <div class="container mt-5">
+        <div class="row" >
+        <div class="mx-auto">
+          <p>CopyRight nagano-cake.inc</p>
+        </div>
+      </div>
+      </div>
+    </footer>
   </body>
 </html>
