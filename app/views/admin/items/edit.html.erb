@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+ <h4 class="d-inline bg-light">商品編集</h4>
+ </div>
+ <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
+  <div class="form-group">
+   <div class="col-md-3">
+     <%= f.label :商品画像 %>
+     <%= f.attachment_field :image %>
+   </div>
+   <div class="form-group">
+     <div class="col-md-3">
+       <%= f.label :商品名 %>
+       <%= f.text_field :name %>
+     </div>
+   </div>
+      <div class="form-group">
+     <div class="col-md-3">
+       <%= f.label :商品説明 %>
+       <%= f.text_area :introduction %>
+     </div>
+   </div>
+      <div class="form-group">
+     <div class="col-md-3">
+       <%= f.label :ジャンル %>
+       <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "--選択してください--" %>
+     </div>
+   </div>
+      <div class="form-group">
+     <div class="col-md-3">
+       <%= f.label :税抜価格 %>
+       <%= f.text_field :price %>円
+     </div>
+   </div>
+   <div class="col-sm-2 mt-auto-ml-5">
+     <%= f.submit :変更を保存, class: "btn btn-success" %>
+   </div>
+   <% end %>
+</div>

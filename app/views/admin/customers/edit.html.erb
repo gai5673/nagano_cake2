@@ -1,0 +1,60 @@
+<div class="container">
+ <h4 class="d-inline bg-light"><%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集</h4>
+ <%= form_with model: @customer, url: admin_customer_path, local: true do |f| %>
+ <div class="row">
+  <div class="form-group">
+  <%= f.label :会員ID %>
+  <div class="row">
+  <%= @customer.id %>
+  </div>
+  <div class="form-group">
+  <%= f.label :氏名 %>
+  <div class="row">
+  <%= f.text_field :first_name, class: "form-control col-4" %>
+  <%= f.text_field :last_name, class: "form-control col-4"%>
+  </div>
+  </div>
+  <div class="form-group">
+  <%= f.label :フリガナ %>
+  <div class="row">
+  <%= f.text_field :first_name_kana, class: "form-control col-4" %>
+  <%= f.text_field :last_name_kana, class: "form-control col-4" %>
+  </div>
+  </div>
+  <div class="form-group">
+  <%= f.label :郵便番号 %>
+  <div class="row">
+  <%= f. text_field :postal_code, class: "form-control col-4" %>
+  </div>
+  </div>
+  <div class="form-group">
+  <%= f.label :住所 %>
+  <div class="row">
+  <%= f.text_field :address, class: "form-control col-8" %>
+  </div>
+  </div>
+  <div class="form-group">
+  <%= f.label :電話番号 %>
+  <div class="row">
+  <%= f.text_field :telephone_number, class: "form-control col-4" %>
+  </div>
+  </div>
+  <div class="form-group">
+  <%= f.label :メールアドレス %>
+  <div class="row">
+  <%= f.text_field :email, class: "form-control col-4" %>
+  </div>
+  <div class="form-group">
+  <%= f.label :会員ステータス %>
+  <div class="row">
+  <%= f.radio_button :is_active, :true %>
+  <%= f.label :is_active, "有効" %>
+  <%= f.radio_button :is_active, :false %>
+  <%= f.label :is_active, "退会" %>
+  </div>
+  </div>
+  <div class="col-2">
+  <%= f.submit :変更を保存, class: "btn btn-success" %>
+  </div>
+  <% end %>
+</div>

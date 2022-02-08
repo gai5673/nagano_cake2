@@ -1,0 +1,81 @@
+<div class="container my-5">
+ <div class="row">
+  <h4 class="">注文履歴詳細</h4>
+ </div>
+ <div class="row mt-3">
+   <div class="col-sm-9">
+    <table class="table table-borderless">
+     <tbody>
+      <tr>
+       <td>購入者</td>
+        <td>
+         <%= link_to @order.customer.last_name @order.customer.first_name,admin_customer_path(@order.customer.id) %>
+        </td>
+      </tr>
+      <tr>
+       <td>配送先</td>
+       <td>
+         <%= @order.postal_code %><%= @order.address %></br>
+         <%= @order.name %>
+       </td>
+      </tr>
+      <tr>
+       <td>支払方法</td>
+       <td><%= @order.payment %></td>
+      </tr>
+      <tr>
+       <td>注文ステータス</td>
+       <td></td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+ </div>
+
+  <div class="row mt-3">
+   <div class="col-sm-9">
+     <table class="table table-hover">
+       <thead>
+         <tr>
+           <th>商品名</th>
+           <th>単価(税込)</th>
+           <th>数量</th>
+           <th>小計</th>
+           <th>製作ステータス</th>
+         </tr>
+       </thead>
+
+       <% @orders_details.each do |orders_detail| %>
+       <tbody>
+         <tr>
+           <td><%= orders_detail.item_name %></td>
+           <td><%= (orders_detail.item_price * 1.1).floor %></td>
+           <td><%= orders_detail.quantity %></td>
+           <td><%= (orders_detail.item_price * orders_detail.quantity * 1.1).floor %></td>
+           <td></td>
+         </tr>
+       </tbody>
+       <% end %>
+     </table>
+   </div>
+
+   <div class="col-sm-3 d-flex">
+     <table class="table table-borderless align-self-end">
+       <tbody>
+         <tr class="border-bottom border-dark">
+           <td>商品合計</td>
+           <td><%= @sum %></td>
+         </tr>
+          <tr class="border-bottom border-dark">
+            <td>送料</td>
+            <td><%= @order.postage %></td>
+          </tr>
+          <tr class="border-bottom border-dark">
+            <td>請求金額合計</td>
+            <td><%= @sum + @order.postage %></td>
+          </tr>
+       </tbody>
+     </table>
+   </div>
+  </div>
+</div>

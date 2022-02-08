@@ -1,0 +1,28 @@
+<div class="container">
+ <h4 class="d-inline bg-light">商品一覧</h4>
+  <div class="row">
+   	<% @items.each do |item| %>
+   <div class="col-3">
+			  <table class="table">
+			   <tr>
+				  <th>
+				   <%= link_to item_path(item) do %>
+					 <%= attachment_image_tag(item, :image,size: "150x100", fallback: "no_image.jpg") %>
+					 <% end %>
+					</th>
+				 </tr>
+				 <tr>
+				  <th><%= link_to item.name, item_path(item) %></th>
+				 </tr>
+				 <tr>
+				  <th>¥<%= (item.price * 1.1).to_i %></th>
+				 </tr>
+				</table>
+			 </div>
+		   <% end %>
+     </div>
+     <%= paginate @items %>
+    </div>
+</div>
+
+</div>

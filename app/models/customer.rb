@@ -15,4 +15,10 @@ class Customer < ApplicationRecord
   validates :postal_code,  presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
 
+
+
+def active_for_authentication?
+ super && (is_active == true)
+end
+
 end
