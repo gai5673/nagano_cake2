@@ -21,10 +21,10 @@ Rails.application.routes.draw do
   patch "/customers/out" => "customers#out"
   resources :addresses, except: [:new, :show]
   resources :items,  only: [:index, :show]
-  resources :cart_items, only: [:index, :update, :destroy, :create]
   delete "/cart_items/destroy_all" => "cart_items#destroy_all"
-  resources :orders, only:[:new, :create, :index, :show]
+  resources :cart_items, only: [:index, :update, :destroy, :create]
   post "/orders/log" => "orders#log"
   get "/orders/complete" => "orders#complete"
+  resources :orders, only:[:new, :create, :index, :show]
 end
 end

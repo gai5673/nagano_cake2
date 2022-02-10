@@ -38,12 +38,12 @@
         </tr>
        </thead>
        <tbody>
-       <% @order_details.each do |order_detail| %>
+       <% @orders_details.each do |orders_details| %>
         <tr>
-         <td><%= order_detail.item.name %></td>
-         <td><%= order_detail.price %></td>
-         <td><%= order_detail.quantity %></td>
-         <td><%= order_detail.price * order_detail.quantity %></td>
+         <td><%= orders_details.item.name %></td>
+         <td><%= orders_details.price %></td>
+         <td><%= orders_details.quantity %></td>
+         <td><%= orders_details.price * orders_details.quantity %></td>
         </tr>
        <% end %>
        </tbody>

@@ -2,16 +2,16 @@
  <h4 class="d-inline bg-light">注文情報入力</h4>
  <div class="row">
   <div class="col-xs-12">
-  <%= form_with model: @order, method: :post, local: true do |f| %>
+  <%= form_with model: @order, url: orders_log_path, method: :post , local: true do |f| %>
   <table class="table table-borderless">
   <tbody>
   <tr>
   <th>支払方法</th>
   <td>
   <div class="radio">
-  <%= f.radio_button :payment, 0 %>
+  <%= f.radio_button :payment, "クレジットカード" %>
   <label class="payment-label"> クレジットカード</label>
-  <%= f.radio_button :payment, 1 %>
+  <%= f.radio_button :payment, "銀行振込" %>
   <label class="payment-label">銀行振込</label>
   </div>
   </td>
@@ -20,13 +20,13 @@
   <th>お届け先</th>
   <td>
   <div class="radio">
-  <%= radio_button_tag(:selected_address, :radio1) %>
+  <%= f.radio_button :selected_address, :radio1 %>
   <%= label_tag(:selected_address, "ご自身の住所") %>
   <p>〒<%= @customer.postal_code %><%= @customer.address %></p>
   <p><%= @customer.first_name %><%= @customer.last_name %></p>
   </div>
   <div class="radio">
-  <%= radio_button_tag(:selected_address, :radio2) %>
+  <%= f.radio_button :selected_address, :radio2 %>
   <%= label_tag(:selected_address, "新しいお届け先") %>
   <div class="field">
   <label class="postal-code-label">郵便番号(ハイフンなし)</label>
