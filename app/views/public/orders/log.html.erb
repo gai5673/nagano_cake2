@@ -63,7 +63,15 @@
  </div>
  <div class="row">
   <div class="col-5">
-  <%= form_with model: @order, url: orders_path , id: 'order', local: true do |f| %>
+  <%= form_with model: @order, url: orders_path , local: true do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :postal_code %>
+  <%= f.hidden_field :payment %>
+  <%= f.hidden_field :customer_id %>
+  <%= f.hidden_field :amount_claimed %>
+  <%= f.hidden_field :updated_at %>
+  <%= f.hidden_field :created_at %>
   <%= f.submit "注文を確定する",class:"btn btn-success offset-8" %>
   <% end %>
   </div>

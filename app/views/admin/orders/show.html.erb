@@ -9,7 +9,7 @@
       <tr>
        <td>購入者</td>
         <td>
-         <%= link_to @order.customer.last_name @order.customer.first_name,admin_customer_path(@order.customer.id) %>
+         <%= link_to @order.customer.first_name + @order.customer.last_name, admin_customer_path(@order.customer.id) %>
         </td>
       </tr>
       <tr>
@@ -45,13 +45,13 @@
          </tr>
        </thead>
 
-       <% @orders_details.each do |orders_detail| %>
+       <% @orders_details.each do |t| %>
        <tbody>
          <tr>
-           <td><%= orders_detail.item_name %></td>
-           <td><%= (orders_detail.item_price * 1.1).floor %></td>
-           <td><%= orders_detail.quantity %></td>
-           <td><%= (orders_detail.item_price * orders_detail.quantity * 1.1).floor %></td>
+           <td><%= t.item.name %></td>
+           <td><%= t.price %></td>
+           <td><%= t.quantity %></td>
+           <td><%= t.price * t.quantity %></td>
            <td></td>
          </tr>
        </tbody>
@@ -64,7 +64,7 @@
        <tbody>
          <tr class="border-bottom border-dark">
            <td>商品合計</td>
-           <td><%= @sum %></td>
+           <td><%= @total_price %></td>
          </tr>
           <tr class="border-bottom border-dark">
             <td>送料</td>
