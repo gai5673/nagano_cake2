@@ -14,15 +14,15 @@ class Public::OrdersController < ApplicationController
    @order.postal_code = current_customer.postal_code
    @order.address = current_customer.address
   elsif params[:order][:selected_address] == "radio2"
-   address_new = current_customer.addresses.new(address_params)
-   if address_new.save
-   else
-    @customer = current_customer
-    render :show
-   end
+   addresses_new = current_customer.address.new(addresses_params)
+  if addresses_new
+   redirect_to orders_log_path
   else
     @customer = current_customer
+    render :new
   end
+  end
+
   @total_price = calculate(current_customer)
   @order.postage = 800
   @cart_items = current_customer.cart_items.all
@@ -35,18 +35,19 @@ class Public::OrdersController < ApplicationController
   cart_items = current_customer.cart_items.all
   @order = current_customer.orders.new(order_params)
   @order.postage = 800
-  # @order.amount_claimed = 3
+  @total_price = calculate(current_customer)
+  @order.amount_claimed = @total_price + @order.postage
   if @order.save
   cart_items.each do |cart_item|
   order_details = OrdersDetail.new
-  order_details.items_id = cart.item_id
-  order_details.orders_id = @order.id
-  order_details.quantity = cart.amount
-  order_details.price = cart.item.price
+  order_details.item_id = cart_item.item_id
+  order_details.order_id = @order.id
+  order_details.quantity = cart_item.amount
+  order_details.price = cart_item.item.price
   order_details.save
   end
-  redirect_to orders_log_path
   cart_items.destroy_all
+  redirect_to orders_complete_path
   else
   @order = Order.new(order_params)
   render :new
@@ -58,13 +59,17 @@ class Public::OrdersController < ApplicationController
  end
 
  def show
-  @order = Order.find(params[:id])
-  @order_details = @order.order_details
+  @order = Order.find(current_customer.id)
+  @orders_details = @order.orders_details.all
  end
 
 private
  def order_params
-  params.require(:order).permit(:postal_code, :address, :name, :payment, :created_at, :updated_at, :customer_id)
+  params.permit(:postal_code, :address, :name, :payment, :created_at, :updated_at, :customer_id)
+ end
+
+ def addresses_params
+  params.permit(:customer_id, :name, :postal_code, :address)
  end
 
  def calculate(customer)

@@ -62,8 +62,8 @@
  </div>
  </div>
  <div class="row">
-  <div class="col-xs-offset-5">
-  <%= form_with model: @order, url: orders_path, method: :post, id: 'order', local: true do |f| %>
+  <div class="col-5">
+  <%= form_with model: @order, url: orders_path , id: 'order', local: true do |f| %>
   <%= f.submit "注文を確定する",class:"btn btn-success offset-8" %>
   <% end %>
   </div>

@@ -1,7 +1,7 @@
 <div class="container">
- <div class="row">
   <h4 class="d-inline bg-light">注文履歴一覧</h4>
-   <div class="col-xs-10 col-xs-offset-1">
+  <div class="row">
+   <div class="col">
     <table class="table table-bordered">
      <thead>
       <tr class="table-head">
@@ -22,11 +22,11 @@
        <p><%= order.name %></p>
       </td>
       <td>
-      <% order.order_details.all.each do |f| %>
+       <% order.orders_details.each do |f| %>
        <p><%= f.item.name %></p>
        <% end %>
       </td>
-      <td><%= order.total_price %>円</td>
+      <td><%= order.amount_claimed %>円</td>
       <td></td>
       <td>
        <%= link_to "表示する", order, class: 'btn btn-primary' %>

@@ -1,7 +1,7 @@
 <div class="container">
- <div class="row">
   <h4 class="d-inline bg-light">注文履歴詳細</h4>
-   <div class="col-xs-8">
+  <div class="row">
+   <div class="col-8">
     <h5>注文情報</h5>
      <table class="table table-bordered">
       <tbody>
@@ -12,7 +12,7 @@
        <tr>
         <td>配送先</td>
         <td>
-         <p><%= @order.postal_code %><%= @order.address %></p>
+         <p>〒<%= @order.postal_code %><%= @order.address %></p>
          <p><%= @order.name %></p>
         </td>
        </tr>
@@ -38,7 +38,7 @@
         </tr>
        </thead>
        <tbody>
-       <% @orders_details.each do |orders_details| %>
+       <% @orders_details.each do |orders_detail| %>
         <tr>
          <td><%= orders_details.item.name %></td>
          <td><%= orders_details.price %></td>
@@ -64,7 +64,7 @@
         </tr>
         <tr>
          <td>ご請求額</td>
-         <td><%= @order.total_price %></td>
+         <td><%= @order.amount_claimed %></td>
          </tr>
        </tbody>
       </table>

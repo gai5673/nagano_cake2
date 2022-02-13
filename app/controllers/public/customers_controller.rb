@@ -25,7 +25,7 @@ before_action :authenticate_customer!
   @customer = Customer.find(params[:id])
   if @customer.update(is_active: false)
   sign_out current_customer
- end
+  end
   redirect_to root_path
  end
 
