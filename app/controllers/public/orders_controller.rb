@@ -14,8 +14,13 @@ session[:payment] = order_params[:payment]
    @order.name = current_customer.first_name + current_customer.last_name
    @order.postal_code = current_customer.postal_code
    @order.address = current_customer.address
-  elsif params[:order][:selected_address] == "radio2"
-   address_new = current_customer.address.new(address_params)
+  elsif params[:selected_address] == "radio2"
+   session[:address] = order_params[:address]
+   session[:name] = order_params[:name]
+   @address = @customer.addresses.build
+   @address.postal_code = order_params[:postal_code]
+   @address.address = order_params[:address]
+   @address.name = order_params[:name]
   if address_new.save
    redirect_to orders_log_path
   else
