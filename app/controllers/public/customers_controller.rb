@@ -22,10 +22,9 @@ before_action :authenticate_customer!
  end
 
  def out
-  @customer = Customer.find(params[:id])
-  if @customer.update(is_active: false)
-  sign_out current_customer
-  end
+  @customer = Customer.find(current_customer.id)
+  @customer.update(is_active: false)
+  reset_session
   redirect_to root_path
  end
 

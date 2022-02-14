@@ -64,7 +64,9 @@ session[:payment] = order_params[:payment]
  def show
   @order = Order.find(params[:id])
   @orders_details = @order.orders_details
-  @total_price = calculate(current_customer)
+  @sum = 0
+  @subtotals = @orders_details.map { |orders_details| orders_details.price * orders_details.quantity }
+  @sum = @subtotals.sum
  end
 
 private

@@ -15,10 +15,10 @@ Rails.application.routes.draw do
   scope module: :public do
   root "homes#top"
   get "/about" => "homes#about"
-  resources :customers, only: [:edit, :update, :destroy]
   get "/customers/my_page" => "customers#show"
   get "/customers/quit" => "customers#quit"
   patch "/customers/out" => "customers#out"
+  resources :customers, only: [:edit, :update, :destroy]
   resources :addresses, except: [:new, :show]
   resources :items,  only: [:index, :show]
   delete "/cart_items/destroy_all" => "cart_items#destroy_all"
