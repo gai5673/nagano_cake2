@@ -47,9 +47,9 @@
    <tbody>
    <tr>
    <td><%= t.item.name %></td>
-   <td><%= t.price %></td>
+   <td><%= (t.price * 1.1).floor %></td>
    <td><%= t.quantity %></td>
-   <td><%= t.price * t.quantity %></td>
+   <td><%= (t.price * 1.1).floor * t.quantity %></td>
    <td></td>
    </tr>
    </tbody>

@@ -70,7 +70,7 @@ session[:payment] = order_params[:payment]
   @order = Order.find(params[:id])
   @orders_details = @order.orders_details
   @sum = 0
-  @subtotals = @orders_details.map { |orders_details| orders_details.price * orders_details.quantity }
+  @subtotals = @orders_details.map { |orders_details| (orders_details.price * 1.1).floor * orders_details.quantity }
   @sum = @subtotals.sum
  end
 
